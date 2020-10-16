@@ -343,6 +343,8 @@ if platform.system() == "Windows":
         sp.call(['conda', 'install', '-y', '-q', 'jupyter'],env=dict(os.environ, PATH='{};{}/Miniconda3/Scripts;{}/Miniconda3'.format(path, up, up)), shell=True, stdout=f, stderr=f)
         print('\rInstalling PyCPT Dependencies... 66%', end='')
         sp.call(['conda', 'install', '-y', '-q', '-c', 'conda-forge', 'cartopy'], env=dict(os.environ, PATH='{};{}/Miniconda3/Scripts;{}/Miniconda3'.format(path, up, up)),shell=True,stderr=f, stdout=f)
+        print('\rInstalling PyCPT Dependencies... 99%', end='')
+        sp.call(['conda', 'install', '-y', '-q', '-c', 'conda-forge', 'netCDF4'], env=dict(os.environ, PATH='{};{}/Miniconda3/Scripts;{}/Miniconda3'.format(path, up, up)),shell=True,stderr=f, stdout=f)
         f.close()
         print('\rInstalling PyCPT Dependencies...      finished')
     except sp.CalledProcessError as e:
@@ -352,8 +354,8 @@ if platform.system() == "Windows":
 
     try:
         print('Downloading PyCPT... ', end='')
-        sp.call(['curl','-s', 'https://raw.githubusercontent.com/kjhall01/PyCPT-Dev/master/scripts/pycpt_functions_seasonal.py', '--output', './pycpt_functions_seasonal.py']) #downloads pycpt_functions_seasonal.py
-        sp.call(['curl','-s', 'https://raw.githubusercontent.com/kjhall01/PyCPT-Dev/master/scripts/PyCPT_seav1.4.ipynb', '--output', './PyCPT_seav1.4.ipynb']) #curl is a program that grabs data from a provided website url. -s mutes its output. --output specifies the output file.
+        sp.call(['curl','-s', 'https://raw.githubusercontent.com/nachiketaacharya/PyCPT_Seasonal/main/pycpt_functions_seasonal.py', '--output', './pycpt_functions_seasonal.py']) #downloads pycpt_functions_seasonal.py
+        sp.call(['curl','-s', 'https://raw.githubusercontent.com/nachiketaacharya/PyCPT_Seasonal/main/pycpt_seasonal.ipynb', '--output', './pycpt_seasonal.ipynb']) #curl is a program that grabs data from a provided website url. -s mutes its output. --output specifies the output file.
         print('      Finished')
     except sp.CalledProcessError as e:
         print(e.output)
@@ -415,7 +417,7 @@ else:
         except:
             print("Unexpected Error: ", sys.exec_info()[0])
             print('gfortran install failed, go install it manually')
-    
+
 
 
     #fetch CPT16.5.8 from simon's repository on iri.columbia.edu
@@ -531,6 +533,9 @@ else:
         sp.call(['conda', 'install', '-y', '-q', 'jupyter'], stdout=f)
         print('\rInstalling PyCPT Dependencies... 66%', end='')
         sp.call(['conda', 'install', '-y', '-q', '-c', 'conda-forge', 'cartopy'], stdout=f)
+        print('\rInstalling PyCPT Dependencies... 99%', end='')
+        sp.call(['conda', 'install', '-y', '-q', '-c', 'conda-forge', 'netCDF4'], env=dict(os.environ, PATH='{};{}/Miniconda3/Scripts;{}/Miniconda3'.format(path, up, up)),shell=True,stderr=f, stdout=f)
+
         f.close()
         print('\rInstalling PyCPT Dependencies...      finished', end='')
     except sp.CalledProcessError as e:
